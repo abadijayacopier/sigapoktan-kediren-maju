@@ -312,7 +312,7 @@ export default function SigapoktanKedirenMajuApp() {
   const shuPerPoktanList = (rat.shu_per_poktan as Array<Record<string, unknown>>) || [];
 
   return (
-    <div className="app-layout">
+    <div className="shell">
       {/* Toast Notification */}
       {toast && (
         <div
@@ -320,196 +320,335 @@ export default function SigapoktanKedirenMajuApp() {
             position: 'fixed',
             bottom: '22px',
             right: '24px',
-            background: '#0d2b1d',
+            background: '#0f172a',
             color: '#fff',
             padding: '12px 18px',
             borderRadius: '10px',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.3)',
+            boxShadow: '0 10px 25px rgba(0,0,0,0.25)',
             zIndex: 10000,
-            borderLeft: '4px solid #fbbf24',
+            borderLeft: '4px solid #10b981',
             fontWeight: 700,
-            fontSize: '13.5px',
+            fontSize: '13px',
           }}
         >
           ✅ {toast}
         </div>
       )}
 
-      {/* Left Sidebar Navigation */}
-      <aside className="sidebar">
-        <div className="sidebar-brand">
-          <span className="brand-badge">KABUPATEN MAGETAN</span>
-          <h1>SIGAPOKTAN &ldquo;KEDIREN MAJU&rdquo;</h1>
-          <p>Desa Kediren, Kec. Lembeyan</p>
+      {/* Adminator Left Sidebar Navigation */}
+      <aside className="d-sidebar">
+        {/* Brand Header */}
+        <div className="brand">
+          <div className="brand-logo">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+              <path d="M2 12l10 5 10-5" />
+            </svg>
+          </div>
+          <div className="brand-text">
+            <div className="brand-name">SIGAPOKTAN</div>
+            <div className="brand-tag">KEDIREN MAJU · MAGETAN</div>
+          </div>
         </div>
 
-        <div className="sidebar-meta-box">
-          <div>
-            <span className="lbl">Ketua Gapoktan:</span>
+        {/* Gapoktan Summary Meta Box */}
+        <div className="sidebar-meta-card">
+          <div className="meta-row">
+            <span className="lbl">Ketua:</span>
             <span className="val">SUYANTO</span>
           </div>
-          <div>
+          <div className="meta-row">
             <span className="lbl">Sekretaris:</span>
             <span className="val">SUPRIYANTO</span>
           </div>
-          <div>
+          <div className="meta-row">
             <span className="lbl">Bendahara:</span>
             <span className="val">H. RUSIMIN</span>
           </div>
-          <div>
-            <span className="lbl">Rek. BRI Lembeyan:</span>
-            <span className="val">3877-01-025711-53-9</span>
+          <div className="meta-row">
+            <span className="lbl">Rek. BRI:</span>
+            <span className="val highlight">3877-01-025711-53-9</span>
           </div>
-          <div>
+          <div className="meta-row">
             <span className="lbl">Penyuluh:</span>
             <span className="val">IIS SUGIARTI, SP</span>
           </div>
         </div>
 
-        <nav className="sidebar-nav">
-          <div className="nav-section-title">Menu Utama Operasional</div>
+        {/* Navigation Section 1: Workspace */}
+        <nav className="nav-section">
+          <div className="nav-label">Workspace</div>
           <button
             type="button"
             id="nav-dashboard"
-            className={`nav-btn ${activeMenu === 'DASHBOARD' ? 'active' : ''}`}
+            className={`nav-link ${activeMenu === 'DASHBOARD' ? 'is-active' : ''}`}
             onClick={() => setActiveMenu('DASHBOARD')}
           >
-            📊 Dashboard &amp; Rumus 7 Poktan
-          </button>
-          <button
-            type="button"
-            id="nav-poktan"
-            className={`nav-btn ${activeMenu === 'POKTAN_ANGGOTA' ? 'active' : ''}`}
-            onClick={() => setActiveMenu('POKTAN_ANGGOTA')}
-          >
-            👥 7 Poktan &amp; Anggota Petani
+            <svg viewBox="0 0 24 24"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>
+            <span>Dashboard &amp; Rumus 7 Poktan</span>
+            <span className="nav-badge pro">7 POKTAN</span>
           </button>
           <button
             type="button"
             id="nav-webgis"
-            className={`nav-btn ${activeMenu === 'WEBGIS_KEDIREN' ? 'active' : ''}`}
+            className={`nav-link ${activeMenu === 'WEBGIS_KEDIREN' ? 'is-active' : ''}`}
             onClick={() => setActiveMenu('WEBGIS_KEDIREN')}
           >
-            🛰️ WebGIS Hybrid &amp; GPS Kediren
+            <svg viewBox="0 0 24 24"><path d="M9 20V4l6 4v16z"/><path d="M3 7l6-3v16l-6 3z"/><path d="M15 8l6-3v16l-6 3"/></svg>
+            <span>WebGIS Hybrid &amp; GPS Kediren</span>
+            <span className="nav-badge new">HYBRID</span>
           </button>
+        </nav>
 
-          <div className="nav-section-title">Keuangan Mikro BLM-PUAP</div>
+        {/* Navigation Section 2: Kelembagaan */}
+        <nav className="nav-section">
+          <div className="nav-label">Kelembagaan &amp; Petani</div>
+          <button
+            type="button"
+            id="nav-poktan"
+            className={`nav-link ${activeMenu === 'POKTAN_ANGGOTA' ? 'is-active' : ''}`}
+            onClick={() => setActiveMenu('POKTAN_ANGGOTA')}
+          >
+            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>7 Poktan &amp; Anggota Petani</span>
+            <span className="nav-badge gold">350+</span>
+          </button>
+        </nav>
+
+        {/* Navigation Section 3: Finansial BLM-PUAP */}
+        <nav className="nav-section">
+          <div className="nav-label">Finansial BLM-PUAP</div>
           <button
             type="button"
             id="nav-puap"
-            className={`nav-btn ${activeMenu === 'PUAP_ANGSURAN' ? 'active' : ''}`}
+            className={`nav-link ${activeMenu === 'PUAP_ANGSURAN' ? 'is-active' : ''}`}
             onClick={() => setActiveMenu('PUAP_ANGSURAN')}
           >
-            💰 Pinjaman &amp; Angsuran 3 Musim
+            <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <span>Pinjaman &amp; Angsuran 3 Musim</span>
+            <span className="nav-badge hot">3x/THN</span>
           </button>
           <button
             type="button"
             id="nav-dokumen"
-            className={`nav-btn ${activeMenu === 'DOKUMEN_DINAS' ? 'active' : ''}`}
+            className={`nav-link ${activeMenu === 'DOKUMEN_DINAS' ? 'is-active' : ''}`}
             onClick={() => setActiveMenu('DOKUMEN_DINAS')}
           >
-            🖨️ Berkas Pencairan &amp; Rekom Dinas
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+            <span>Berkas Pencairan &amp; Rekom Dinas</span>
+            <span className="nav-badge pro">RESMI</span>
           </button>
           <button
             type="button"
             id="nav-rat"
-            className={`nav-btn ${activeMenu === 'RAT_KAS_SIMPANAN' ? 'active' : ''}`}
+            className={`nav-link ${activeMenu === 'RAT_KAS_SIMPANAN' ? 'is-active' : ''}`}
             onClick={() => setActiveMenu('RAT_KAS_SIMPANAN')}
           >
-            📑 Laporan RAT, SHU &amp; Buku Kas
-          </button>
-
-          <div className="nav-section-title">Dokumentasi Sistem</div>
-          <button
-            type="button"
-            id="nav-blueprint"
-            className={`nav-btn ${activeMenu === 'BLUEPRINT' ? 'active' : ''}`}
-            onClick={() => setActiveMenu('BLUEPRINT')}
-          >
-            📐 Blueprint &amp; Perancangan Sistem
+            <svg viewBox="0 0 24 24"><path d="M3 20V4M7 20v-6M11 20v-10M15 20v-4M19 20V8"/></svg>
+            <span>Laporan RAT, SHU &amp; Buku Kas</span>
+            <span className="nav-badge new">2026</span>
           </button>
         </nav>
 
+        {/* Navigation Section 4: Dokumentasi */}
+        <nav className="nav-section">
+          <div className="nav-label">Sistem &amp; Blueprint</div>
+          <button
+            type="button"
+            id="nav-blueprint"
+            className={`nav-link ${activeMenu === 'BLUEPRINT' ? 'is-active' : ''}`}
+            onClick={() => setActiveMenu('BLUEPRINT')}
+          >
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span>Blueprint &amp; Perancangan</span>
+            <span className="nav-badge pro">DOCS</span>
+          </button>
+        </nav>
+
+        {/* Sidebar Footer with Workspace User */}
         <div className="sidebar-footer">
-          <div>Berdiri: 14 Februari 2008</div>
-          <div>Perguliran Aktif: Ke-XLIX (Nov 2026 – Mar 2027)</div>
-          <div style={{ marginTop: '4px', color: '#86efac', fontWeight: 600 }}>
-            Developer By Supriyanto — Sekretaris Gapoktan Kediren Maju
+          <div className="workspace-card">
+            <div className="workspace-avatar">SY</div>
+            <div className="workspace-text">
+              <div className="workspace-name">Suyanto</div>
+              <div className="workspace-role">Ketua Gapoktan Kediren Maju</div>
+            </div>
+          </div>
+          <div style={{ marginTop: '10px', fontSize: '11px', color: '#94a3b8', lineHeight: 1.4 }}>
+            Berdiri: 14 Feb 2008 &bull; Perguliran XLIX
+            <br />
+            <span style={{ color: '#059669', fontWeight: 600 }}>
+              Developer: Supriyanto (Sekretaris)
+            </span>
           </div>
         </div>
       </aside>
 
-      {/* Main Content */}
-      <div className="main-content">
-        <header className="topbar">
-          <div className="topbar-title">
-            <h2>
-              {activeMenu === 'DASHBOARD' && 'Dashboard Eksekutif & Tabel Rumus PUAP Gapoktan "KEDIREN MAJU"'}
-              {activeMenu === 'POKTAN_ANGGOTA' && 'Manajemen Kelembagaan 7 Poktan & Anggota Petani Desa Kediren'}
-              {activeMenu === 'WEBGIS_KEDIREN' && 'WebGIS Peta Pertanian Hybrid & GPS Desa Kediren, Kec. Lembeyan'}
-              {activeMenu === 'PUAP_ANGSURAN' && 'Unit Usaha Simpan Pinjam BLM-PUAP & Angsuran 3 Musim Tanam'}
-              {activeMenu === 'DOKUMEN_DINAS' && 'Pusat Cetak Berkas Pencairan PUAP & Rekomendasi Dinas TPHP Magetan'}
-              {activeMenu === 'RAT_KAS_SIMPANAN' && 'Laporan RAT Tahunan, Pembagian SHU, Simpanan & Buku Kas Gapoktan'}
-              {activeMenu === 'BLUEPRINT' && 'Dokumen Perancangan Sistem Informasi Gapoktan (ERD, Arsitektur & Rumus)'}
-            </h2>
-            <p>
-              Desa Kediren, Kecamatan Lembeyan, Kabupaten Magetan — Komoditas Unggulan: Padi, Jagung &amp; Tebu
-            </p>
+      {/* Adminator Main Content Area */}
+      <div className="main">
+        {/* Adminator Topbar */}
+        <header className="d-topbar">
+          <div className="crumbs">
+            <span>SIGAPOKTAN</span>
+            <span className="sep">&bull;</span>
+            <span>Workspace</span>
+            <span className="sep">&bull;</span>
+            <strong>
+              {activeMenu === 'DASHBOARD' && 'Dashboard Eksekutif'}
+              {activeMenu === 'POKTAN_ANGGOTA' && '7 Poktan & Anggota Petani'}
+              {activeMenu === 'WEBGIS_KEDIREN' && 'WebGIS Hybrid GPS Kediren'}
+              {activeMenu === 'PUAP_ANGSURAN' && 'Pinjaman & Angsuran 3 Musim'}
+              {activeMenu === 'DOKUMEN_DINAS' && 'Berkas Pencairan & Rekom Dinas'}
+              {activeMenu === 'RAT_KAS_SIMPANAN' && 'Laporan RAT & Buku Kas'}
+              {activeMenu === 'BLUEPRINT' && 'Blueprint Arsitektur Sistem'}
+            </strong>
           </div>
 
-          <div className="topbar-badges">
-            <span className="pill-badge pill-green">
-              🏦 Saldo BRI: {formatRupiah(Number(summary.saldo_rekening_awal || 401462970))}
-            </span>
-            <span className="pill-badge pill-gold">
-              🌾 Siklus Angsuran: 3x/Tahun (Mar-Jul | Jul-Nov | Nov-Mar)
-            </span>
-            <span className="pill-badge pill-blue">
-              📌 Jasa: Rp 50.000/Jt | Admin Baru &amp; Cair: Rp 10.000
-            </span>
+          <div className="topbar-actions">
+            <div className="cmd" title="Pencarian cepat">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+              <span>Cari NIK / Petani / Poktan...</span>
+              <kbd className="kbd">⌘K</kbd>
+            </div>
+
+            <button
+              type="button"
+              className="icon-btn"
+              title="Notifikasi Siklus Musim Tanam Nov-Mar"
+              onClick={() => showNotification('Siklus Musim Tanam November - Maret aktif: 7 Poktan sedang berjalan lancar.')}
+            >
+              <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span className="count">3</span>
+            </button>
+
+            <div className="topbar-user">
+              <div className="topbar-user-avatar">SY</div>
+              <div className="topbar-user-text">
+                <div className="topbar-user-name">Suyanto</div>
+                <div className="topbar-user-role">Ketua Gapoktan</div>
+              </div>
+            </div>
           </div>
         </header>
 
-        <main className="page-container">
+        {/* Content Viewport */}
+        <main className="content">
+          {/* Adminator Hero Banner */}
+          <section className="hero">
+            <div className="hero-text">
+              <span className="eyebrow" id="heroDate">
+                Minggu · 22 November 2026 · Siklus Musim Tanam (Nov–Mar)
+              </span>
+              <h1 className="hero-title">
+                Selamat Datang di SIGAPOKTAN, <span className="accent">Pak Suyanto</span>
+              </h1>
+              <p className="hero-sub">
+                Sistem Informasi Terpadu Gapoktan &ldquo;KEDIREN MAJU&rdquo; Desa Kediren, Kec. Lembeyan.
+                Saldo BRI aktif <strong>{formatRupiah(Number(summary.saldo_rekening_awal || 401462970))}</strong>,
+                alokasi 7 Poktan <strong>Rp 340.000.000</strong>, dan terhubung dengan rekomendasi Dinas TPHP Magetan.
+              </p>
+            </div>
+            <div className="hero-actions">
+              <button
+                type="button"
+                className="btn btn--ghost"
+                onClick={() => setActiveMenu('DOKUMEN_DINAS')}
+              >
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+                Cetak Rekom Dinas TPHP
+              </button>
+              <button
+                type="button"
+                className="btn btn--primary"
+                onClick={() => setShowAddPetaniModal(true)}
+              >
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                Pendaftaran Anggota Baru
+              </button>
+            </div>
+          </section>
+
           {loading ? (
-            <div className="section-card">Memuat data Gapoktan Kediren Maju...</div>
+            <div className="card">Memuat data Gapoktan Kediren Maju...</div>
           ) : (
             <>
               {/* ==================== 1. DASHBOARD ==================== */}
               {activeMenu === 'DASHBOARD' && (
                 <div>
+                  {/* Adminator KPI Cards Grid */}
                   <div className="kpi-grid">
-                    <div className="kpi-card highlight">
-                      <span className="kpi-label">Saldo Rekening BRI Unit Lembeyan</span>
-                      <div className="kpi-value">{formatRupiah(Number(summary.saldo_rekening_awal || 401462970))}</div>
-                      <span className="kpi-sub">No. Rek: 3877-01-025711-53-9</span>
-                    </div>
+                    <article className="kpi-card c-primary">
+                      <div className="kpi-top">
+                        <div className="kpi-identity">
+                          <div className="kpi-icon primary">
+                            <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                          </div>
+                          <div className="kpi-label">Saldo Rekening BRI</div>
+                        </div>
+                        <span className="kpi-pill info">Unit Lembeyan</span>
+                      </div>
+                      <div className="kpi-value">
+                        {formatRupiah(Number(summary.saldo_rekening_awal || 401462970))}
+                      </div>
+                      <div className="kpi-compare">
+                        No. Rekening <strong>3877-01-025711-53-9</strong>
+                      </div>
+                    </article>
 
-                    <div className="kpi-card">
-                      <span className="kpi-label">Total Penarikan BLM-PUAP (7 Poktan)</span>
-                      <div className="kpi-value" style={{ color: '#14532d' }}>
+                    <article className="kpi-card c-success">
+                      <div className="kpi-top">
+                        <div className="kpi-identity">
+                          <div className="kpi-icon success">
+                            <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                          </div>
+                          <div className="kpi-label">Alokasi BLM 7 Poktan</div>
+                        </div>
+                        <span className="kpi-pill up">100% Terserap</span>
+                      </div>
+                      <div className="kpi-value">
                         {formatRupiah(Number(summary.total_plafon_puap || 340000000))}
                       </div>
-                      <span className="kpi-sub">
-                        340 Anggota Petani &bull; Sisa Saldo BRI: {formatRupiah(Number(summary.sisa_saldo_rekening || 61462970))}
-                      </span>
-                    </div>
+                      <div className="kpi-compare">
+                        Sisa saldo BRI <strong>{formatRupiah(Number(summary.sisa_saldo_rekening || 61462970))}</strong>
+                      </div>
+                    </article>
 
-                    <div className="kpi-card">
-                      <span className="kpi-label">Total Dana Kembali (Pokok + Jasa)</span>
-                      <div className="kpi-value" style={{ color: '#0369a1' }}>
+                    <article className="kpi-card c-warning">
+                      <div className="kpi-top">
+                        <div className="kpi-identity">
+                          <div className="kpi-icon warning">
+                            <svg viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+                          </div>
+                          <div className="kpi-label">Total Dana Kembali</div>
+                        </div>
+                        <span className="kpi-pill warning">Jasa 5% / Musim</span>
+                      </div>
+                      <div className="kpi-value">
                         {formatRupiah(Number(summary.total_dana_kembali || 357000000))}
                       </div>
-                      <span className="kpi-sub">
-                        Jasa Musim (Rp 50rb/Jt): +{formatRupiah(Number(summary.total_jasa_musim || 17000000))} / Musim
-                      </span>
-                    </div>
+                      <div className="kpi-compare">
+                        Jasa musim (Rp 50rb/Jt): +<strong>{formatRupiah(Number(summary.total_jasa_musim || 17000000))}</strong>
+                      </div>
+                    </article>
 
-                    <div className="kpi-card">
-                      <span className="kpi-label">Cakupan Lahan &amp; 3 Komoditas</span>
-                      <div className="kpi-value" style={{ color: '#b45309' }}>84,0 Ha</div>
-                      <span className="kpi-sub">7 Poktan Desa Kediren (Padi, Jagung &amp; Tebu)</span>
-                    </div>
+                    <article className="kpi-card c-purple">
+                      <div className="kpi-top">
+                        <div className="kpi-identity">
+                          <div className="kpi-icon purple">
+                            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                          </div>
+                          <div className="kpi-label">Cakupan Kelembagaan</div>
+                        </div>
+                        <span className="kpi-pill info">7 Poktan</span>
+                      </div>
+                      <div className="kpi-value">
+                        84,0 <sup>Ha</sup>
+                      </div>
+                      <div className="kpi-compare">
+                        Komoditas: <strong>Padi, Jagung &amp; Tebu</strong>
+                      </div>
+                    </article>
                   </div>
 
                   {/* Tabel Master RUMUS 7 Poktan Sesuai Google Spreadsheet */}
